@@ -34,14 +34,14 @@ Pages Not in Any Module
 Next Steps
 ----------
   1. Copy the course folder from inside the extracted pages folder into
-     your Open MultiCourse Hub site's user/pages/ directory
+     your Open MultiCourse Hub or Open Course Space site's user/pages/ directory
   2. To set its place in the course list, add a number to the front of the
      folder name (such as 05.), and set its description in subsite.md
   3. Review this file for any warnings or manual fixes needed
 
 Conversion Settings
 -------------------
-  Destination:     Open MultiCourse Hub
+  Destination:     Open MultiCourse Hub or Open Course Space
   Format:          Course hub (shortcodes + full frontmatter)
   Attached files:  skipped
   Image download:  skipped — images kept as remote URLs

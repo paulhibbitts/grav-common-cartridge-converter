@@ -157,7 +157,7 @@ class CourseHubBuilder
         // An Open Course Hub site is the course itself, so it has no course file
         if ($this->destination === 'open-course-hub') return;
 
-        // An Open MultiCourse Hub course uses subsite.md: its title and description on the
+        // An Open MultiCourse Hub course (which Open Course Space also reads, as it is) uses subsite.md: its title and description on the
         // course list, and the page its address opens (Home). visible: false keeps the course
         // itself out of the site's menu
         if ($this->destination === 'open-multicourse-hub') {
@@ -788,7 +788,7 @@ class CourseHubBuilder
             }
         } elseif ($this->destination === 'open-multicourse-hub') {
             $lines[] = '  1. Copy the course folder from inside the extracted pages folder into';
-            $lines[] = '     your Open MultiCourse Hub site\'s user/pages/ directory';
+            $lines[] = '     your Open MultiCourse Hub or Open Course Space site\'s user/pages/ directory';
             $lines[] = '  2. To set its place in the course list, add a number to the front of the';
             $lines[] = '     folder name (such as 05.), and set its description in subsite.md';
             $lines[] = '  3. Review this file for any warnings or manual fixes needed';
@@ -810,7 +810,7 @@ class CourseHubBuilder
             $destinationName = 'Open Course Hub';
         }
         if ($this->destination === 'open-multicourse-hub') {
-            $destinationName = 'Open MultiCourse Hub';
+            $destinationName = 'Open MultiCourse Hub or Open Course Space';
         }
         if ($this->portableMarkdown) {
             $destinationName = 'any Grav site';
