@@ -56,9 +56,12 @@ $includeSyllabus     = !empty($_POST['include_syllabus']);
 $portableMarkdown    = !empty($_POST['portable_markdown']);
 
 // Where the course will go: Open Course Space or Grav Helios Course Hub (each keeps the course in its own
-// folder). With no destination sent (an older copy of the form), the course is written for Helios
+// folder). With no destination sent (a very old copy of the form), the course is written for Helios.
+// An older copy of the form (kept by a browser's cache) may still send Open Course Hub or Open MultiCourse
+// Hub: Open Course Space replaces both
 $destination = 'helios';
-if (isset($_POST['destination']) && $_POST['destination'] === 'open-course-space') {
+$openCourseSpaceChoices = ['open-course-space', 'open-course-hub', 'open-multicourse-hub'];
+if (isset($_POST['destination']) && in_array($_POST['destination'], $openCourseSpaceChoices, true)) {
     $destination = 'open-course-space';
 }
 $tmpDir            = sys_get_temp_dir() . '/cc_' . uniqid();

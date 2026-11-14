@@ -678,22 +678,58 @@ class CourseHubBuilder
         }
 
         $addHeader('Next Steps');
+        // the course image, if the export has one (it's used on the course's card and above its pages)
+        $hasCourseImage = $p->courseImagePath && file_exists($p->courseImagePath);
+        // Each step is a list of lines; they're numbered below, so a step can be left out (such as the
+        // course image one, when there is an image) without a gap in the numbers
+        $steps = [];
         if ($this->destination === 'open-course-space') {
-            $lines[] = '  1. Copy the course folder from inside the extracted pages folder into';
-            $lines[] = '     your Open Course Space site\'s user/pages/ directory';
-            $lines[] = '  2. To set its place on the Courses page, add a number to the front of the';
-            $lines[] = '     folder name (such as 05.); add a sentence about the course for its card';
-            $lines[] = '     as its Description, on the course\'s Course tab in Admin (or in course.md)';
-            $lines[] = '  3. Review this file for any warnings or manual fixes needed';
+            $steps[] = [
+                'Copy the course folder from inside the extracted pages folder into',
+                'your Open Course Space site\'s user/pages/ directory',
+            ];
+            $steps[] = [
+                'To set its place on the Courses page, add a number to the front of the',
+                'folder name (such as 05.); add a sentence about the course for its card',
+                'as its Description, on the course\'s Course tab in Admin (or in course.md)',
+            ];
+            if (!$hasCourseImage) {
+                $steps[] = [
+                    'No course image was found. To show one on the course\'s card and above',
+                    'its pages, add a headerimage folder to the course folder, with a wide',
+                    'image (such as 1600 × 400) and a default.md page, as in the skeleton\'s',
+                    'example courses',
+                ];
+            }
         } elseif ($this->portableMarkdown) {
-            $lines[] = '  1. Copy the course folder from inside the extracted pages folder into';
-            $lines[] = '     any Grav site\'s user/pages/ directory (no Helios plugin required),';
-            $lines[] = '     or adapt it for another Markdown-based platform';
-            $lines[] = '  2. Review this file for any warnings or manual fixes needed';
+            $steps[] = [
+                'Copy the course folder from inside the extracted pages folder into',
+                'any Grav site\'s user/pages/ directory (no Helios plugin required),',
+                'or adapt it for another Markdown-based platform',
+            ];
         } else {
-            $lines[] = '  1. Copy the course folder from inside the extracted pages folder into';
-            $lines[] = '     your Grav Helios Course Hub installation\'s user/pages/ directory';
-            $lines[] = '  2. Review this file for any warnings or manual fixes needed';
+            $steps[] = [
+                'Copy the course folder from inside the extracted pages folder into',
+                'your Grav Helios Course Hub installation\'s user/pages/ directory',
+            ];
+            if (!$hasCourseImage) {
+                $steps[] = [
+                    'No course image was found. To show one on the course\'s card, add an',
+                    'image to the course folder (beside course.md) and set it as Card Image',
+                    'in Admin (course.md\'s image setting)',
+                ];
+            }
+        }
+        $steps[] = ['Review this file for any warnings or manual fixes needed'];
+        foreach ($steps as $number => $stepLines) {
+            foreach ($stepLines as $lineNumber => $stepLine) {
+                // the first line gets the step's number; the rest line up under its text
+                $prefix = '     ';
+                if ($lineNumber === 0) {
+                    $prefix = '  ' . ($number + 1) . '. ';
+                }
+                $lines[] = $prefix . $stepLine;
+            }
         }
         $lines[] = '';
 

@@ -53,7 +53,11 @@ Next Steps
   2. To set its place on the Courses page, add a number to the front of the
      folder name (such as 05.); add a sentence about the course for its card
      as its Description, on the course's Course tab in Admin (or in course.md)
-  3. Review this file for any warnings or manual fixes needed
+  3. No course image was found. To show one on the course's card and above
+     its pages, add a headerimage folder to the course folder, with a wide
+     image (such as 1600 × 400) and a default.md page, as in the skeleton's
+     example courses
+  4. Review this file for any warnings or manual fixes needed
 
 Conversion Settings
 -------------------

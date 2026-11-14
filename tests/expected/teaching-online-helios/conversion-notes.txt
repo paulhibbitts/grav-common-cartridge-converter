@@ -50,7 +50,10 @@ Next Steps
 ----------
   1. Copy the course folder from inside the extracted pages folder into
      your Grav Helios Course Hub installation's user/pages/ directory
-  2. Review this file for any warnings or manual fixes needed
+  2. No course image was found. To show one on the course's card, add an
+     image to the course folder (beside course.md) and set it as Card Image
+     in Admin (course.md's image setting)
+  3. Review this file for any warnings or manual fixes needed
 
 Conversion Settings
 -------------------
