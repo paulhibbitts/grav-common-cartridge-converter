@@ -1,6 +1,7 @@
 ---
 title: 'Introduction'
 published: true
+visible: false
 taxonomy:
     category: docs
 navigation:

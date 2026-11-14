@@ -55,14 +55,11 @@ $includeResources    = !empty($_POST['include_resources']);
 $includeSyllabus     = !empty($_POST['include_syllabus']);
 $portableMarkdown    = !empty($_POST['portable_markdown']);
 
-// Where the course will go: Open Course Hub (a site for one course, so no course folder),
-// Open MultiCourse Hub, or Grav Helios Course Hub (both keep the course in its own folder).
-// With no destination sent (an older copy of the form), the output stays as it was before, for Helios
+// Where the course will go: Open Course Space or Grav Helios Course Hub (each keeps the course in its own
+// folder). With no destination sent (an older copy of the form), the course is written for Helios
 $destination = 'helios';
-if (isset($_POST['destination'])) {
-    if ($_POST['destination'] === 'open-course-hub' || $_POST['destination'] === 'open-multicourse-hub') {
-        $destination = $_POST['destination'];
-    }
+if (isset($_POST['destination']) && $_POST['destination'] === 'open-course-space') {
+    $destination = 'open-course-space';
 }
 $tmpDir            = sys_get_temp_dir() . '/cc_' . uniqid();
 mkdir($tmpDir, 0700, true);

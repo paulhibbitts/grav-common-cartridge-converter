@@ -18,10 +18,10 @@ use CH\CourseHubBuilder;
 
 // Each check: a sample course and the form's options. The first one uses the form's defaults.
 $checks = [
-    'teaching-online-open-course-hub' => ['course' => 'introduction-to-teaching-online.imscc', 'destination' => 'open-course-hub', 'portable' => false],
+    'teaching-online-open-course-space' => ['course' => 'introduction-to-teaching-online.imscc', 'destination' => 'open-course-space', 'portable' => false],
     'teaching-online-helios' => ['course' => 'introduction-to-teaching-online.imscc', 'destination' => 'helios', 'portable' => false],
-    'teaching-online-standard-markdown' => ['course' => 'introduction-to-teaching-online.imscc', 'destination' => 'open-course-hub', 'portable' => true],
-    'digital-animation-open-multicourse-hub' => ['course' => 'digital-animation.imscc', 'destination' => 'open-multicourse-hub', 'portable' => false],
+    'teaching-online-standard-markdown' => ['course' => 'introduction-to-teaching-online.imscc', 'destination' => 'open-course-space', 'portable' => true],
+    'digital-animation-open-course-space' => ['course' => 'digital-animation.imscc', 'destination' => 'open-course-space', 'portable' => false],
 ];
 
 $update = in_array('--update', $argv, true);

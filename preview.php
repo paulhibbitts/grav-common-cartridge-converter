@@ -45,14 +45,11 @@ $includeResources    = !empty($_POST['include_resources']);
 $includeSyllabus     = !empty($_POST['include_syllabus']);
 $portableMarkdown    = !empty($_POST['portable_markdown']);
 
-// Where the course will go: Open Course Hub (a site for one course, so no course folder),
-// Open MultiCourse Hub, or Grav Helios Course Hub (both keep the course in its own folder).
-// With no destination sent (an older copy of the form), the output stays as it was before, for Helios
+// Where the course will go: Open Course Space or Grav Helios Course Hub (each keeps the course in its own
+// folder). With no destination sent (an older copy of the form), the course is written for Helios
 $destination = 'helios';
-if (isset($_POST['destination'])) {
-    if ($_POST['destination'] === 'open-course-hub' || $_POST['destination'] === 'open-multicourse-hub') {
-        $destination = $_POST['destination'];
-    }
+if (isset($_POST['destination']) && $_POST['destination'] === 'open-course-space') {
+    $destination = 'open-course-space';
 }
 
 $tmpDir = sys_get_temp_dir() . '/cc_preview_' . uniqid();
@@ -187,7 +184,7 @@ function collectPreviewPages(array $files, array $imageData, int $minLength): ar
 
     $candidatesByModule = [];
     foreach ($files as $path => $content) {
-        if (!preg_match('#/\d+\.modules/#', $path) || !str_ends_with($path, 'course-page.md')) { // 30.modules, or 03.modules for Open Course Hub
+        if (!preg_match('#/\d+\.modules/#', $path) || !str_ends_with($path, 'course-page.md')) { // the Modules folder (30.modules)
             continue;
         }
 

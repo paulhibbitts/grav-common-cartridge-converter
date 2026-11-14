@@ -48,27 +48,23 @@ Pages Not in Any Module
 
 Next Steps
 ----------
-  1. Copy the 03.modules folder from inside the extracted pages folder into
-     your Open Course Hub site's user/pages/ directory, replacing the site's
-     existing Modules folder if it has one (such as 03.modules, or 07.modules on
-     sites from Open Course Hub 4.6), so there is only one. To move Modules in the
-     menu, change the folder's number (01.modules puts it first); its page
-     addresses stay the same
-  2. Set the site's title to the course title, "Introduction to Teaching Online",
-     in Configuration → Site (Site Title); it's shown in the NavBar
-  3. To show the course license (CC BY-NC-SA 4.0) on every page, turn on
-     Display CC License and set CC License Type to "CC Attribution Non-Commercial Share Alike"
-     in Themes → Bootstrap4 Open Matter (Open Matter Options tab)
-  4. Review this file for any warnings or manual fixes needed
+  1. Copy the course folder from inside the extracted pages folder into
+     your Open Course Space site's user/pages/ directory
+  2. To set its place on the Courses page, add a number to the front of the
+     folder name (such as 05.); add a sentence about the course for its card
+     as its Description, on the course's Course tab in Admin (or in course.md)
+  3. Review this file for any warnings or manual fixes needed
 
 Conversion Settings
 -------------------
-  Destination:     Open Course Hub
+  Destination:     Open Course Space
   Format:          Course hub (shortcodes + full frontmatter)
   Attached files:  skipped
   Image download:  skipped — images kept as remote URLs
   Numbered titles: cleaned up (leading numbering stripped)
-  Pages:           Modules only (no Home, Essentials, Resources or Syllabus page)
+  Essentials page: included
+  Resources page:  included
+  Syllabus page:   included
 
 Known Limitations
 -----------------

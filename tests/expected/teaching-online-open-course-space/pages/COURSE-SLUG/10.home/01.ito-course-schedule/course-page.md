@@ -26,13 +26,13 @@ The purpose of week 1 is to get you to meet each other, and share your experienc
   - The department with which you are affiliated
   - What you hope to get out of the ITO course
   - A fun fact about you
-- Sign up to be a [discussion board moderator](/modules/welcome/discussion-board-moderators-sign-up-sheet)
+- Sign up to be a [discussion board moderator](/COURSE-SLUG/home/discussion-board-moderators-sign-up-sheet)
 
 ---
 
 **Activities**✍
 
-- **Identify** the competencies for online teaching . [✍Competencies for Online Teaching.](/modules/module-1-pre-session-activities/competencies-for-online-teaching)
+- **Identify** the competencies for online teaching . [✍Competencies for Online Teaching.](/COURSE-SLUG/modules/module-1-pre-session-activities/competencies-for-online-teaching)
 - **Assess** your readiness in each competency. ✍Rate your confidence in each competency needed for teaching online.
 - **Add** to the Discussion post ✍Share your online learning experiences(Whole class)
 
@@ -74,10 +74,10 @@ Activities✍
 
 **Use the Understanding by Design framework to Identify desired results**.
 
-- **Read** the ["Considering the online context"](/modules/module-2-considering-the-online-context-create-and-organize-learning-outcomes/considering-the-online-context) Canvas page
+- **Read** the ["Considering the online context"](/COURSE-SLUG/modules/module-2-considering-the-online-context-create-and-organize-learning-outcomes/considering-the-online-context) Canvas page
 - **Read** the document on this page called  considerations for online teaching.
 - **Complete** the ungraded survey✍Considerations for online teaching and effective practices
-- **Read** and **complete** the  ["Begin with the end in mind -Backward planning"](/modules/module-2-considering-the-online-context-create-and-organize-learning-outcomes/begin-with-the-end-in-mind-backward-planning) Canvas page
+- **Read** and **complete** the  ["Begin with the end in mind -Backward planning"](/COURSE-SLUG/modules/module-2-considering-the-online-context-create-and-organize-learning-outcomes/begin-with-the-end-in-mind-backward-planning) Canvas page
 - **Follow** the link and **read** [Understanding by Design](https://cft.vanderbilt.edu/guides-sub-pages/understanding-by-design/)  (on the same page)
 - **Download** and **complete** the✍Self-assessment (Pre-course)
 - **Complete** ✍ Writing your own course outcomes and learning objectives
@@ -114,7 +114,7 @@ In this session you have an opportunity to provide and receive peer feedback to 
 
 **Use the Understanding by Design framework to Determine acceptable evidence.**
 
-- **Read** and **complete** the ["Assessments and activities that align with learning objectives"](/modules/module-3-select-and-use-effective-online-formative-and-summative-assessment-strategies/assessments-and-activities-that-align-with-learning-objectives) Canvas page
+- **Read** and **complete** the ["Assessments and activities that align with learning objectives"](/COURSE-SLUG/modules/module-3-select-and-use-effective-online-formative-and-summative-assessment-strategies/assessments-and-activities-that-align-with-learning-objectives) Canvas page
 - **Download** and **read** the document on the same page called Aligning assessments and activities to learning outcomes according to Blooms levels.pdf
 - **Complete** the ✍Assessments and activities for online learning Perusall assignment (or other collaborative tool)
 - **Complete** the Assessments **of** learning and assessments **for** learning sections in the Backward planning template
@@ -144,7 +144,7 @@ Now that you have an idea of how you would like to assess your students and know
 
 **Use the Understanding by Design framework to Plan learning materials / experiences / Instruction.**
 
-- **Read** and **complete** the [Instructional strategies](/modules/module-4-select-and-use-effective-online-instructional-approaches/instructional-strategies) Canvas page
+- **Read** and **complete** the [Instructional strategies](/COURSE-SLUG/modules/module-4-select-and-use-effective-online-instructional-approaches/instructional-strategies) Canvas page
 - **Complete** the ✍Select effective Instructional strategies for online learningPerusall assignment (or other collaborative tool)
 - **Complete** the Learning materials/ experience/ instruction section in the Backward planning template
 
@@ -170,7 +170,7 @@ Reflect on your learning and share the implications this will have on your pract
 
   - *Your initial post should be 1 paragraph in length.  Please comment or respond to one other post.*
   - *Our last synchronous session will be devoted to these reflections. You can choose how and what you will share and what the implications are for your practice.*
-- **Read** the [Reflection models](/modules/module-5-reflections-of-online-learning-and-implications-for-practice/reflection-models) Canvas page
+- **Read** the [Reflection models](/COURSE-SLUG/modules/module-5-reflections-of-online-learning-and-implications-for-practice/reflection-models) Canvas page
 - **Complete** the ✍Self-assessment - post course review
 
 ---
