@@ -971,7 +971,7 @@ class CourseHubBuilder
         if ($this->parser->courseImagePath || $url === '' || $this->skipImageDownload) {
             return;
         }
-        $data = $this->downloadImage($url);
+        $data = $this->downloadImage(self::largeImageUrl($url));
         if ($data === null) {
             return; // the conversion notes then give the address, as before
         }
@@ -984,6 +984,16 @@ class CourseHubBuilder
         if (file_put_contents($path, $data) !== false) {
             $this->parser->courseImagePath = $path;
         }
+    }
+
+    // Canvas picks course images from Unsplash and links a small crop (such as w=262&h=146), which looks blurry as a
+    // header image, so the same photo is asked for at full width instead
+    private static function largeImageUrl(string $url): string
+    {
+        if (parse_url($url, PHP_URL_HOST) !== 'images.unsplash.com') {
+            return $url;
+        }
+        return 'https://images.unsplash.com' . parse_url($url, PHP_URL_PATH) . '?w=2000&fm=jpg&q=80';
     }
 
     private function downloadImage(string $url): ?string
