@@ -185,10 +185,11 @@ class CourseHubBuilder
 
         $desc = $this->parser->courseTitle ? "\ndescription: '" . Helpers::yamlEscape($this->parser->courseTitle) . "'" : '';
         // the course image, which createZip() puts beside course.md, as the course card's image (Card
-        // Image in Admin); turn on Show Card Image in Course Sidebar to show it in the sidebar too
+        // Image in Admin), shown in the course's sidebar too (Show Card Image in Course Sidebar), so the
+        // course has its banner inside it, as Open Course Space shows its header image
         $image = '';
         if ($this->parser->courseImagePath && file_exists($this->parser->courseImagePath)) {
-            $image = "\nimage: '" . Helpers::yamlEscape(basename($this->parser->courseImagePath)) . "'";
+            $image = "\nshow_sidebar_image: true\nimage: '" . Helpers::yamlEscape(basename($this->parser->courseImagePath)) . "'";
         }
         $body = "Use the Admin Panel Editor (or page frontmatter) to set the icon, description, and published status of this course's card on the Courses homepage.";
         $yaml = "---\npublished: true\nroutable: false$desc$image\n---\n\n$body\n";
