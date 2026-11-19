@@ -14,10 +14,23 @@ Structure
 ---------
   Modules:    8
   Wiki pages: 43
-  Pages created: 40
+  Pages created: 27
   Images: 6 local (included in ZIP); external images use remote URLs
   External URLs:  1 (converted to Markdown links)
   Attachments:    12 (not included)
+    - Competencies-for-Online-Teaching.pdf (Easy access to course files)
+    - Aligning assessments and activities to learning outcomes according to Blooms levels.pdf (Easy access to course files)
+    - Considerations for online teaching and their importance.pdf (Easy access to course files)
+    - Considerations for online teaching and learning checklist.pdf (Easy access to course files)
+    - good-practice-guidelines-for-remote-teaching.pdf (Easy access to course files)
+    - blooms_taxonomy_action_verbs.pdf (Easy access to course files)
+    - Backward planning template (Easy access to course files)
+    - Assessment-Tools-Activities DE Toolkit.pdf (Easy access to course files)
+    - Example of completed Backward planning template for reference. (Easy access to course files)
+    - Do This, Not That Online Teaching @ KIS.pdf (Additional resources)
+    - netiquette-usask-simple-290720.pdf (Additional resources)
+    - netiquette-usask-detailed-270720.pdf (Additional resources)
+  Modules left out (only attached files): Easy access to course files
 
 Dropped Content
 ---------------

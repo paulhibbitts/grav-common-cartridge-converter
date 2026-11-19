@@ -29,6 +29,8 @@ class CourseHubBuilder
     private int   $imageFailures   = 0;
     private int   $externalUrlCount = 0;
     private int   $attachmentCount  = 0;
+    private array $skippedFiles     = []; // attached files left out (Skip attached files): "File.pdf (its module)"
+    private array $fileOnlyModules  = []; // modules left out because they only had attached files that were skipped
     private array $slugToRoute      = []; // Canvas wiki-page slug => Grav route, built as pages are created;
                                            // used to resolve $WIKI_REFERENCE$ links at the end of build()
     private array $usedSlugs        = []; // parent folder => the page slugs already used in it (see uniqueSlug())
@@ -371,6 +373,13 @@ class CourseHubBuilder
         $items = $mod['items'];
         [$landingItem, $childItems] = $this->splitItems($mod);
 
+        // a module of attached files only, all skipped, would be empty, so it's left out (and listed in the notes)
+        $onlyFiles = count($items) > 0 && count(array_filter($items, fn($i) => $i['type'] !== 'Attachment')) === 0;
+        if ($onlyFiles && $this->skipFiles) {
+            $this->fileOnlyModules[] = $this->cleanTitle($mod['title']);
+            return;
+        }
+
         // Chapter landing page
         $landingHtml = $landingItem ? $this->getWikiHtml($landingItem) : '';
         $landingBody = $landingHtml ? $this->convertAndCollectImages($landingHtml, $base) : '';
@@ -430,8 +439,10 @@ class CourseHubBuilder
     // labels and lead-ins such as "Main author: …", "Link" or "The blue belt focuses on:".
     // Only paragraph text is used, as everything else would be joined into run-on words: the page
     // title from the document's <head>, headings, and lists such as a tab menu ("Canvas Overview
-    // Global Navigation Dashboard Sidebar…"). A page with no paragraphs, such as one that's just a
-    // table, falls back to the start of all its text instead
+    // Global Navigation Dashboard Sidebar…"). A paragraph in a table is skipped too: such tables are
+    // usually layout, like an instructor box ("INSTRUCTOR … OFFICE HOURS: …"). A page with no real
+    // paragraph falls back to its list items, after its lead-in ("…must be followed: Wash hands; …"),
+    // and a page with neither to the start of all its text
     private function cardDescription(string $html): string
     {
         if (trim($html) === '') {
@@ -449,25 +460,53 @@ class CourseHubBuilder
         // non-breaking space into a normal one, so a paragraph holding only &nbsp; counts as empty)
         $minimumLength = 60;
         $firstParagraph = '';
+        // (a real paragraph in a table is kept in case there's none outside one, as on a page that's a schedule table)
+        $tableParagraph = '';
+        $xpath = new \DOMXPath($dom);
         foreach ($dom->getElementsByTagName('p') as $paragraph) {
             $text = $this->converter->toPlainText($paragraph->textContent);
             if ($text === '') {
                 continue;
             }
+            $isReal = mb_strlen($text) >= $minimumLength && !str_ends_with($text, ':');
+            if ($xpath->query('ancestor::table', $paragraph)->length > 0) {
+                if ($isReal && $tableParagraph === '') {
+                    $tableParagraph = $text;
+                }
+                continue;
+            }
             if ($firstParagraph === '') {
                 $firstParagraph = $text;
             }
-            $isLongEnough = mb_strlen($text) >= $minimumLength;
-            $endsWithColon = str_ends_with($text, ':');
-            if ($isLongEnough && !$endsWithColon) {
+            if ($isReal) {
                 return $text;
             }
+        }
+        if ($tableParagraph !== '') {
+            return $tableParagraph;
+        }
+
+        // Step 3: no real paragraph, so the list items, joined with "; " (a list inside a list item
+        // is left out, as its items are counted on their own)
+        $items = [];
+        foreach ($xpath->query('//li[not(.//li)]') as $item) {
+            $text = $this->converter->toPlainText($item->textContent);
+            if ($text !== '') {
+                $items[] = rtrim($text, '.;');
+            }
+        }
+        $listText = implode('; ', $items);
+        if ($firstParagraph !== '' && str_ends_with($firstParagraph, ':') && $listText !== '') {
+            return Helpers::shortDescription($firstParagraph . ' ' . $listText);
         }
         if ($firstParagraph !== '') {
             return $firstParagraph;
         }
+        if ($listText !== '') {
+            return Helpers::shortDescription($listText);
+        }
 
-        // Step 3: no paragraphs at all, so use the start of all the page's text (without the <head> title)
+        // Step 4: no paragraphs or lists at all, so use the start of all the page's text (without the <head> title)
         $withoutHead = preg_replace('#<head[^>]*>.*?</head>#is', ' ', $html);
         return Helpers::shortDescription($this->converter->toPlainText($withoutHead));
     }
@@ -643,6 +682,12 @@ class CourseHubBuilder
         if ($this->attachmentCount > 0) {
             $included = !$this->skipFiles ? 'included in ZIP under files/' : 'not included';
             $lines[] = '  Attachments:    ' . $this->attachmentCount . ' (' . $included . ')';
+            foreach ($this->skippedFiles as $file) {
+                $lines[] = '    - ' . $file;
+            }
+            if (count($this->fileOnlyModules) > 0) {
+                $lines[] = '  Modules left out (only attached files): ' . implode(', ', $this->fileOnlyModules);
+            }
         }
         $lines[] = '';
 
@@ -1145,6 +1190,12 @@ class CourseHubBuilder
         $childItems  = [];
         foreach ($mod['items'] as $item) {
             if (!in_array($item['type'], ['WikiPage', 'ExternalUrl', 'Attachment'], true)) continue;
+            // a skipped file gets no page (a page saying the file isn't there helps no reader): it's listed in the notes
+            if ($item['type'] === 'Attachment' && $this->skipFiles) {
+                $this->skippedFiles[] = $this->cleanTitle($item['title']) . ' (' . $this->cleanTitle($mod['title']) . ')';
+                $this->attachmentCount++;
+                continue;
+            }
             if ($item['type'] === 'WikiPage' && $item['indent'] === 0 && $landingItem === null) {
                 $landingItem = $item;
             } else {

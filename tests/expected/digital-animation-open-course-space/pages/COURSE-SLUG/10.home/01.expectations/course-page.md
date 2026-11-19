@@ -1,7 +1,7 @@
 ---
 title: 'Expectations'
 published: true
-description: 'In order to keep everyone as healthy as possible the following protocols must be followed:'
+description: 'In order to keep everyone as healthy as possible the following protocols must be followed: Enter the classroom via the lower doorway, leave the classroom via the upper doorway; Wash hands/use sanitizer when entering the class; Physical distancing is not possible in the classroom, students may wear…'
 taxonomy:
     category: docs
 ---

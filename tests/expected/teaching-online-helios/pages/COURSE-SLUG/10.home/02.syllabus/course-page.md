@@ -1,7 +1,7 @@
 ---
 title: 'Syllabus'
 published: true
-description: 'INSTRUCTOR Add instructor name and contact information here OFFICE HOURS: Held weekly over Zoom for the 5 weeks – Drop in for a chat / Q&A/ feedback / sounding board'
+description: 'This non credit course is designed to provide you with a foundation for teaching online. ITO is a 5 week mostly asynchronous, course with three synchronous sessions built in. At the end of this course you will have started to plan your online course by creating course outcomes, module learning objectives, and selecting appropriate assessment strategies and learning materials.'
 taxonomy:
     category: docs
 ---
