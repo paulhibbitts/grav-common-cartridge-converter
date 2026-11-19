@@ -114,6 +114,7 @@ class CourseHubBuilder
             }
         }
 
+        $this->downloadCourseImage();
         $this->buildCourseMd();
         $this->buildHeaderImagePage();
         $this->buildModules();
@@ -958,6 +959,30 @@ class CourseHubBuilder
             $content = preg_replace($mdPattern, '$1', $this->files[$path]);
             $content = preg_replace($htmlPattern, '$1', $content);
             $this->files[$path] = $content;
+        }
+    }
+
+    // A course image that's only an outside address (as in an LMS export that links an Unsplash photo) is downloaded
+    // when image downloads are on, so it's included like a course image in the export. It's saved beside the
+    // export's own files, and named with an image extension, which Grav needs to show it.
+    private function downloadCourseImage(): void
+    {
+        $url = $this->parser->courseImageUrl;
+        if ($this->parser->courseImagePath || $url === '' || $this->skipImageDownload) {
+            return;
+        }
+        $data = $this->downloadImage($url);
+        if ($data === null) {
+            return; // the conversion notes then give the address, as before
+        }
+        $extensions = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/gif' => 'gif', 'image/webp' => 'webp'];
+        $info = getimagesizefromstring($data);
+        $extension = $extensions[$info['mime'] ?? ''] ?? 'jpg';
+        $name = pathinfo(parse_url($url, PHP_URL_PATH) ?: '', PATHINFO_FILENAME);
+        $name = preg_replace('/[^A-Za-z0-9_-]+/', '-', $name) ?: 'course-image';
+        $path = $this->parser->dir . '/' . $name . '.' . $extension;
+        if (file_put_contents($path, $data) !== false) {
+            $this->parser->courseImagePath = $path;
         }
     }
 
