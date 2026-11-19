@@ -1,5 +1,5 @@
 ---
-title: '✍Select effective assessments and activities that align with course outcomes'
+title: '✍ Select effective assessments and activities that align with course outcomes'
 published: true
 description: 'This document lists a selection of assessments and activities that you could incorporate into your online course.'
 taxonomy:

@@ -1,12 +1,12 @@
 ---
-title: '✍Select effective Instructional strategies for online learning'
+title: '✍ Select effective Instructional strategies for online learning'
 published: true
 description: 'In this ITO course, we have started planning our online courses with the end in mind. We have articulated our course outcomes, module learning objectives and decided what types of formative and summative assessments we could use. The final stage of the Backward planning process is deciding how you will teach. In this phase of the design process you need to think about instructional strategies and learning activities that would work best to provide students with the resources and information they need to achieve your course outcomes and objectives.'
 taxonomy:
     category: docs
 ---
 
-# ✍Select effective Instructional strategies for online learning
+# ✍ Select effective Instructional strategies for online learning
 
 In this ITO course, we have started planning our online courses with the end in mind. We have articulated our course outcomes, module learning objectives and decided what types of formative and summative assessments we could use. The final stage of the Backward planning process is deciding how you will teach. In this phase of the design process you need to think about instructional strategies and learning activities that would work best to provide students with the resources and information they need to achieve your course outcomes and objectives.
 

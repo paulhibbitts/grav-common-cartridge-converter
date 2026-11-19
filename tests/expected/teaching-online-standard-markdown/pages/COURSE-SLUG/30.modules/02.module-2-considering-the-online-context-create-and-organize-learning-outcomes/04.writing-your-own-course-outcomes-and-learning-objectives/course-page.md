@@ -1,8 +1,8 @@
 ---
-title: '✍Writing your own course outcomes and learning objectives'
+title: '✍ Writing your own course outcomes and learning objectives'
 ---
 
-# ✍Writing your own course outcomes and learning objectives
+# ✍ Writing your own course outcomes and learning objectives
 
 Using the information you have learned write between 2- 5 course outcomes for your online course and break them down into between 1 - 3 module learning objectives.
 

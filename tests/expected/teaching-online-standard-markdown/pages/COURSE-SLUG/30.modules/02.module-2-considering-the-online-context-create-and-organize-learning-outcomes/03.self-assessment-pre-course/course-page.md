@@ -1,8 +1,8 @@
 ---
-title: '✍Self-assessment (Pre-course)'
+title: '✍ Self-assessment (Pre-course)'
 ---
 
-# ✍Self-assessment (Pre-course)
+# ✍ Self-assessment (Pre-course)
 
 This self-assessment rubric has been specifically designed for the ITO course. The criteria in the rubric are all aligned with the course outcomes and module learning objectives.
 

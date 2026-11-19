@@ -1,8 +1,8 @@
 ---
-title: '✍Self-assessment  (Post-course)'
+title: '✍ Self-assessment (Post-course)'
 ---
 
-# ✍Self-assessment  (Post-course)
+# ✍ Self-assessment (Post-course)
 
 This self-assessment rubric has been specifically designed for the ITO course. The criteria in the rubric are all aligned with the course outcomes and module learning objectives.
 

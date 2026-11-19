@@ -80,7 +80,11 @@ class CourseHubBuilder
         $title = $this->stripTitleNumbering ? Helpers::stripLeadingNumbering($title) : $title;
         // a title is a name, not a sentence: a full stop at its end goes ("Reflection models." → "Reflection models"),
         // but not an ellipsis ("What's next...")
-        return preg_replace('/(?<!\.)\.\s*$/u', '', trim($title));
+        $title = preg_replace('/(?<!\.)\.\s*$/u', '', trim($title));
+        // and a run of spaces inside it is one space ("Self-assessment  (Post-course)")
+        $title = preg_replace('/\s{2,}/u', ' ', $title);
+        // a symbol or emoji pressed against the first word gets a space ("✍Competencies" → "✍ Competencies")
+        return preg_replace('/^(\p{So}\x{FE0F}?)(?=\p{L})/u', '$1 ', $title);
     }
 
     // Exposes the in-memory Markdown files build() already assembled — used by the
