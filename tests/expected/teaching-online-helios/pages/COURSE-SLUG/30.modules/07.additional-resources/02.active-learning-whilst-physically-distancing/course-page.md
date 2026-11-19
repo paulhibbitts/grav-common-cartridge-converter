@@ -1,12 +1,12 @@
 ---
-title: 'Active Learning whilst physically distancing.'
+title: 'Active Learning whilst physically distancing'
 published: true
 description: 'If you are looking for practical strategies to make your teaching engaging and impactful, this document outlines some approaches that you can use in online synchronous, online asynchronous and face-to-face distanced settings.'
 taxonomy:
     category: docs
 ---
 
-# Active Learning whilst physically distancing.
+# Active Learning whilst physically distancing
 
 If you are looking for practical strategies to make your teaching engaging and impactful, this document outlines some approaches that you can use in online synchronous, online asynchronous and face-to-face distanced settings.
 

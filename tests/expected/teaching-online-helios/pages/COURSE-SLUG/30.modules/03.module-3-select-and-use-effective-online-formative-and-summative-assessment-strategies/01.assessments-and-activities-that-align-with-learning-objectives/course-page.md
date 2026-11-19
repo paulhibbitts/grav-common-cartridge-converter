@@ -1,12 +1,12 @@
 ---
-title: 'Assessments and activities that align with learning objectives.'
+title: 'Assessments and activities that align with learning objectives'
 published: true
 description: 'Assessing student learning is an essential component of effective online teaching. When thinking about assessments in your online course it is important that they align with your course outcomes and learning objectives. You need to ensure that you are assessing exactly what it is you intend your students to learn.'
 taxonomy:
     category: docs
 ---
 
-# Assessments and activities that align with learning objectives.
+# Assessments and activities that align with learning objectives
 
 ## Gathering evidence of student learning and understanding
 

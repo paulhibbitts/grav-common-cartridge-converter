@@ -1,12 +1,12 @@
 ---
-title: 'Module 3 - Select and use effective online formative and summative assessment strategies.'
+title: 'Module 3 - Select and use effective online formative and summative assessment strategies'
 published: true
 description: 'Select and use effective online formative and summative assessment strategies to determine student success in achieving the expected learning objectives'
 taxonomy:
     category: docs
 ---
 
-# Module 3 - Select and use effective online formative and summative assessment strategies.
+# Module 3 - Select and use effective online formative and summative assessment strategies
 
 **The course outcome is to:**
 

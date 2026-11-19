@@ -1,8 +1,8 @@
 ---
-title: 'Module 4 - Select and use effective online instructional approaches.'
+title: 'Module 4 - Select and use effective online instructional approaches'
 ---
 
-# Module 4 - Select and use effective online instructional approaches.
+# Module 4 - Select and use effective online instructional approaches
 
 **The course outcome is to:**
 

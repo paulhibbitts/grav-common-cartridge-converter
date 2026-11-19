@@ -1,12 +1,12 @@
 ---
-title: 'Module 4 - Select and use effective online instructional approaches.'
+title: 'Module 4 - Select and use effective online instructional approaches'
 published: true
 description: 'Select and use effective online instructional approaches and align with outcomes.'
 taxonomy:
     category: docs
 ---
 
-# Module 4 - Select and use effective online instructional approaches.
+# Module 4 - Select and use effective online instructional approaches
 
 **The course outcome is to:**
 

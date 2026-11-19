@@ -77,7 +77,10 @@ class CourseHubBuilder
     // Helpers::stripLeadingNumbering() for what gets stripped and why.
     private function cleanTitle(string $title): string
     {
-        return $this->stripTitleNumbering ? Helpers::stripLeadingNumbering($title) : $title;
+        $title = $this->stripTitleNumbering ? Helpers::stripLeadingNumbering($title) : $title;
+        // a title is a name, not a sentence: a full stop at its end goes ("Reflection models." → "Reflection models"),
+        // but not an ellipsis ("What's next...")
+        return preg_replace('/(?<!\.)\.\s*$/u', '', trim($title));
     }
 
     // Exposes the in-memory Markdown files build() already assembled — used by the

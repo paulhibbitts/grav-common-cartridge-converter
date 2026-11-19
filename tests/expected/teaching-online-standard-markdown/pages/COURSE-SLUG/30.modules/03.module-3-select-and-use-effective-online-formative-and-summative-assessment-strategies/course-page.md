@@ -1,8 +1,8 @@
 ---
-title: 'Module 3 - Select and use effective online formative and summative assessment strategies.'
+title: 'Module 3 - Select and use effective online formative and summative assessment strategies'
 ---
 
-# Module 3 - Select and use effective online formative and summative assessment strategies.
+# Module 3 - Select and use effective online formative and summative assessment strategies
 
 **The course outcome is to:**
 

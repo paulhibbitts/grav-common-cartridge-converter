@@ -1,12 +1,12 @@
 ---
-title: 'Module 2 - Considering the online context, create and organize learning outcomes.'
+title: 'Module 2 - Considering the online context, create and organize learning outcomes'
 published: true
 description: 'Consider the online learning environment and create and organize course outcomes / learning objectives'
 taxonomy:
     category: docs
 ---
 
-# Module 2 - Considering the online context, create and organize learning outcomes.
+# Module 2 - Considering the online context, create and organize learning outcomes
 
 **The course outcome is to:**
 

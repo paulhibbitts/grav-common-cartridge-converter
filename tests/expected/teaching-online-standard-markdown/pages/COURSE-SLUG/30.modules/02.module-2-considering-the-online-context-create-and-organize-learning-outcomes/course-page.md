@@ -1,8 +1,8 @@
 ---
-title: 'Module 2 - Considering the online context, create and organize learning outcomes.'
+title: 'Module 2 - Considering the online context, create and organize learning outcomes'
 ---
 
-# Module 2 - Considering the online context, create and organize learning outcomes.
+# Module 2 - Considering the online context, create and organize learning outcomes
 
 **The course outcome is to:**
 

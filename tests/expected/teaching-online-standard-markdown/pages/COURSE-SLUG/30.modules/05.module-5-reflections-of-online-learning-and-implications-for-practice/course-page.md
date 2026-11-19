@@ -1,8 +1,8 @@
 ---
-title: 'Module 5 - Reflections of online learning and implications for practice.'
+title: 'Module 5 - Reflections of online learning and implications for practice'
 ---
 
-# Module 5 - Reflections of online learning and implications for practice.
+# Module 5 - Reflections of online learning and implications for practice
 
 The course outcome is to:  ***Reflect on your experiences as an online learner and show how it will influence you online teaching.***
 
