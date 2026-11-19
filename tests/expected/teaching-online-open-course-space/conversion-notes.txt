@@ -81,7 +81,7 @@ Conversion Settings
   Numbered titles: cleaned up (leading numbering stripped)
   Essentials page: included
   Resources page:  included
-  Syllabus page:   included
+  Syllabus page:   not added (the course has its own Syllabus page)
 
 Known Limitations
 -----------------

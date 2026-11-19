@@ -126,8 +126,10 @@ class CourseHubBuilder
         $hasSyllabusContent = $this->parser->syllabusHtml && strlen(strip_tags($this->parser->syllabusHtml)) >= 10;
         if ($this->includeEssentials) $this->buildEssentials();
         if ($this->includeResources)  $this->buildResources();
-        // Always build syllabus when source content exists; flag only suppresses the stub.
-        if ($this->includeSyllabus || $hasSyllabusContent) $this->buildSyllabus();
+        // Always build syllabus when source content exists; flag only suppresses the stub. No stub when the course
+        // already has a page called Syllabus (an empty Syllabus in the menu would hide the real one)
+        $wantsStub = $this->includeSyllabus && !$this->hasSyllabusPage();
+        if ($wantsStub || $hasSyllabusContent) $this->buildSyllabus();
 
         $this->downloadPendingImages();
         $this->dropFailedImageReferences();
@@ -613,6 +615,19 @@ class CourseHubBuilder
         $this->addFile("$base/course-page.md", $fm . $body);
     }
 
+    // Whether one of the course's pages is called "Syllabus"
+    private function hasSyllabusPage(): bool
+    {
+        foreach ($this->parser->modules as $mod) {
+            foreach ($mod['items'] as $item) {
+                if ($item['type'] === 'WikiPage' && strcasecmp($this->cleanTitle($item['title']), 'Syllabus') === 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     private function buildSyllabus(): void
     {
         $html = $this->parser->syllabusHtml;
@@ -799,7 +814,12 @@ class CourseHubBuilder
         $lines[] = '  Numbered titles: ' . ($this->stripTitleNumbering ? 'cleaned up (leading numbering stripped)' : 'left as-is');
         $lines[] = '  Essentials page: ' . ($this->includeEssentials ? 'included' : 'not included');
         $lines[] = '  Resources page:  ' . ($this->includeResources ? 'included' : 'not included');
-        $lines[] = '  Syllabus page:   ' . ($this->includeSyllabus ? 'included' : 'not included');
+        $syllabus = $this->includeSyllabus ? 'included' : 'not included';
+        $hasSyllabusContent = $this->parser->syllabusHtml && strlen(strip_tags($this->parser->syllabusHtml)) >= 10;
+        if ($this->includeSyllabus && $this->hasSyllabusPage() && !$hasSyllabusContent) {
+            $syllabus = "not added (the course has its own Syllabus page)";
+        }
+        $lines[] = '  Syllabus page:   ' . $syllabus;
         $lines[] = '';
 
         if (!empty($this->warnings)) {
