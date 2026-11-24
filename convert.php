@@ -4,6 +4,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 use CH\CartridgeParser;
 use CH\CourseHubBuilder;
 
+// For a Docsify download: the course is converted for Open Course Space, then sent to the Grav Docsify Bridge
+const DOCSIFY_BRIDGE = 'https://grav-docsify-bridge.hibbittsdesign.org/convert.php';
+
 set_time_limit(300);
 ini_set('memory_limit', '512M');
 
@@ -64,6 +67,11 @@ $openCourseSpaceChoices = ['open-course-space', 'open-course-hub', 'open-multico
 if (isset($_POST['destination']) && in_array($_POST['destination'], $openCourseSpaceChoices, true)) {
     $destination = 'open-course-space';
 }
+// Docsify-This or a Starter Kit: converted as for Open Course Space, which the bridge then moves to Docsify
+$toDocsify = ($_POST['destination'] ?? '') === 'docsify';
+if ($toDocsify) {
+    $destination = 'open-course-space';
+}
 $tmpDir            = sys_get_temp_dir() . '/cc_' . uniqid();
 mkdir($tmpDir, 0700, true);
 
@@ -119,6 +127,13 @@ cleanup($tmpDir);
 // ── Stream ZIP to browser ──────────────────────────────────────────────────
 
 $filename = 'course-hub-' . $parser->courseSlug . '.zip';
+if ($toDocsify) {
+    $docsifyZipPath = sendToBridge($zipPath);
+    copyConversionNotes($zipPath, $docsifyZipPath);
+    unlink($zipPath);
+    $zipPath = $docsifyZipPath;
+    $filename = 'docsify-' . $parser->courseSlug . '.zip';
+}
 
 $downloadToken = preg_replace('/[^a-z0-9]/', '', $_POST['download_token'] ?? '');
 if ($downloadToken) {
@@ -135,6 +150,52 @@ unlink($zipPath);
 exit;
 
 // ── Helpers ────────────────────────────────────────────────────────────────
+
+// Sends the Open Course Space zip to the Grav Docsify Bridge and returns the path of the Docsify zip it sends back
+function sendToBridge(string $gravZipPath): string
+{
+    $request = curl_init(DOCSIFY_BRIDGE);
+    curl_setopt_array($request, [
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => ['site' => new CURLFile($gravZipPath, 'application/zip', 'course.zip')],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 180,
+    ]);
+    $response = curl_exec($request);
+    $status   = curl_getinfo($request, CURLINFO_HTTP_CODE);
+    $type     = (string) curl_getinfo($request, CURLINFO_CONTENT_TYPE);
+
+    if ($response === false || $status !== 200 || !str_contains($type, 'zip')) {
+        unlink($gravZipPath);
+        // the bridge explains a problem in plain text; otherwise it couldn't be reached
+        $reason = 'the Grav Docsify Bridge couldn\'t be reached';
+        if (is_string($response) && $status === 400) {
+            $reason = mb_substr(trim($response), 0, 300);
+        }
+        showError('The course was converted, but making its Docsify version failed: ' . $reason
+            . ' Try again, or choose Open Course Space and upload that download to the Grav Docsify Bridge.');
+    }
+
+    $docsifyZipPath = tempnam(sys_get_temp_dir(), 'docsify-');
+    file_put_contents($docsifyZipPath, $response);
+    return $docsifyZipPath;
+}
+
+// Copies conversion-notes.txt from the Open Course Space zip into the Docsify zip, beside the bridge's notes
+function copyConversionNotes(string $fromZipPath, string $toZipPath): void
+{
+    $from = new ZipArchive();
+    $to   = new ZipArchive();
+    if ($from->open($fromZipPath) !== true || $to->open($toZipPath) !== true) {
+        return; // the notes are a help, not needed for the site
+    }
+    $notes = $from->getFromName('conversion-notes.txt');
+    if ($notes !== false) {
+        $to->addFromString('conversion-notes.txt', $notes);
+    }
+    $from->close();
+    $to->close();
+}
 
 function showError(string $msg): void
 {
