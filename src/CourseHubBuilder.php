@@ -1090,7 +1090,6 @@ class CourseHubBuilder
             ]);
             $data     = curl_exec($ch);
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            curl_close($ch);
             if (!$data || strlen($data) === 0 || $httpCode !== 200) return null;
             return $this->looksLikeImage($data) ? $data : null;
         }
